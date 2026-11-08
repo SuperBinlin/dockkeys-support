@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="DockKeys opens, switches to, and hides your Mac apps with keyboard shortcuts that follow your Dock order.">
+<meta name="theme-color" content="#101d39">
+<title>DockKeys — Your Dock, one shortcut away</title>
+<style>
+  :root { color-scheme: light; --ink: #101d39; --muted: #465777; --paper: #f4f7ff; --blue: #234aa6; --line: #d2dcf1; --ice: #e4edff; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.6 system-ui, sans-serif; }
+  a { color: var(--blue); text-underline-offset: .22em; }
+  :focus-visible { outline: 3px solid #487af2; outline-offset: 5px; }
+  .wrap { width: min(1120px, calc(100% - 3rem)); margin-inline: auto; }
+  header, footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.35rem; }
+  header { border-bottom: 1px solid var(--line); }
+  .brand { display: flex; align-items: center; gap: .65rem; font-size: 1.14rem; font-weight: 750; color: var(--ink); text-decoration: none; }
+  .mark { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: .6rem; background: var(--blue); color: white; line-height: 1; }
+  .hero { padding-block: clamp(3rem, 7vw, 6.5rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.25rem, 6vw, 5rem); align-items: center; }
+  h1, h2, h3, p { margin: 0; }
+  h1 { max-width: 11ch; font-size: clamp(3rem, 6.2vw, 5.5rem); line-height: .99; letter-spacing: -.07em; font-weight: 780; }
+  .intro { max-width: 35ch; margin-block: 1.45rem; color: var(--muted); font-size: 1.15rem; }
+  .requirements { display: inline-block; border: 1px solid var(--line); padding: .38rem .75rem; border-radius: 2rem; color: var(--blue); font-size: .88rem; font-weight: 650; }
+  .demo { padding: clamp(1rem, 3.5vw, 1.8rem); border-radius: 1.6rem; color: white; background: #101d39; }
+  .demo h2 { font-size: 1rem; }
+  .demo p { color: #cbd9fc; font-size: .9rem; }
+  .screen { margin-block: 1.15rem; min-height: 10.4rem; display: grid; place-items: center; text-align: center; padding: .85rem; border-radius: .95rem; border: 1px solid #6680b3; background: radial-gradient(ellipse at 20% 120%, #286a83 0, transparent 65%), linear-gradient(130deg, #203763, #5b4b88); }
+  .window { width: min(100%, 14rem); border-radius: .75rem; background: var(--paper); color: var(--ink); padding: .85rem 1rem; box-shadow: 0 12px 32px #101d395e; }
+  .window strong { display: block; }
+  .window span { font-size: .85rem; color: var(--muted); }
+  .dock { display: grid; grid-template-columns: repeat(3, 1fr); gap: .45rem; }
+  .dock button { display: grid; justify-items: center; gap: .3rem; padding: .55rem .15rem; background: #233454; border: 1px solid #61759b; border-radius: .7rem; color: white; cursor: pointer; font: inherit; font-size: .8rem; }
+  .dock button[aria-pressed="true"] { background: #344e86; border-color: #a4bcff; }
+  .tile { display: grid; place-items: center; width: 2.15rem; height: 2.15rem; border-radius: .65rem; font-weight: 750; font-size: 1.1rem; }
+  .drafts { background: #345bb9; }
+  .studio { background: #6a48b2; }
+  .reader { background: #146961; }
+  kbd { font: .85rem ui-monospace, monospace; color: #e5edff; white-space: nowrap; }
+  .features { border-top: 1px solid var(--line); padding-block: 2.65rem 3.8rem; }
+  .features h2 { font-size: clamp(1.7rem, 3.6vw, 2.55rem); line-height: 1.12; letter-spacing: -.045em; }
+  .details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.7rem; margin-top: 1.65rem; }
+  .details h3 { font-size: 1.03rem; }
+  .details p, footer { color: var(--muted); }
+  .details p { margin-top: .3rem; max-width: 31ch; }
+  footer { border-top: 1px solid var(--line); flex-wrap: wrap; font-size: .93rem; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 1.1rem; }
+  @media (max-width: 760px) {
+    .wrap { width: min(35rem, calc(100% - 2rem)); }
+    .hero, .details { grid-template-columns: 1fr; }
+    .hero { padding-block: 3rem; }
+  }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <a class="brand" href="./overview.html"><span class="mark" aria-hidden="true">⌘</span>DockKeys</a>
+  <a href="./index.html">Support</a>
+</header>
+<main class="wrap">
+  <section class="hero" aria-labelledby="title">
+    <div>
+      <h1 id="title">Your Dock, one shortcut away.</h1>
+      <p class="intro">Open or switch to your Mac apps from the keyboard. Press the same shortcut again to hide the active app.</p>
+      <p class="requirements">Apple silicon · macOS 15.2 or later</p>
+    </div>
+    <section class="demo" aria-labelledby="demo-title">
+      <h2 id="demo-title">Try a shortcut</h2>
+      <p>Choose a key below to show or hide a sample app.</p>
+      <div class="screen">
+        <div class="window" role="status" aria-live="polite">
+          <strong id="sample-name">Studio</strong>
+          <span id="sample-status">Open in this demo</span>
+        </div>
+      </div>
+      <div class="dock">
+        <button type="button" data-app="Drafts" aria-pressed="false"><span class="tile drafts" aria-hidden="true">D</span>Drafts <kbd aria-label="Command and backtick">⌘ + &#96;</kbd></button>
+        <button type="button" data-app="Studio" aria-pressed="true"><span class="tile studio" aria-hidden="true">S</span>Studio <kbd aria-label="Command and 1">⌘ + 1</kbd></button>
+        <button type="button" data-app="Reader" aria-pressed="false"><span class="tile reader" aria-hidden="true">R</span>Reader <kbd aria-label="Command and 2">⌘ + 2</kbd></button>
+      </div>
+    </section>
+  </section>
+  <section class="features" aria-labelledby="features-title">
+    <h2 id="features-title">Your shortcuts follow your Dock.</h2>
+    <div class="details">
+      <div><h3>See what each key opens</h3><p>DockKeys shows a shortcut under each of the first 11 pinned app positions. Rearrange the Dock and the shortcuts follow.</p></div>
+      <div><h3>Choose what to hold</h3><p>Use Command or choose your own modifier combination. Turn off individual positions whenever you need to.</p></div>
+      <div><h3>Set a shortcut for any app</h3><p>Give a favorite app its own key combination, even if it lives outside the Dock.</p></div>
+    </div>
+  </section>
+</main>
+<footer class="wrap">
+  <span>DockKeys for Mac</span>
+  <nav aria-label="Product information"><a href="./index.html">Support</a><a href="./privacy.html">Privacy policy</a></nav>
+</footer>
+<script>
+  const buttons = [...document.querySelectorAll('.dock button')];
+  const sampleName = document.querySelector('#sample-name');
+  const sampleStatus = document.querySelector('#sample-status');
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      const show = button.getAttribute('aria-pressed') !== 'true';
+      for (const item of buttons) item.setAttribute('aria-pressed', String(item === button && show));
+      sampleName.textContent = button.dataset.app;
+      sampleStatus.textContent = show ? 'Open in this demo' : 'Hidden in this demo';
+    });
+  }
+</script>
+</body>
+</html>
